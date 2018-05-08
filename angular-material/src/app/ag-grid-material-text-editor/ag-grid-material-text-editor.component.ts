@@ -1,17 +1,22 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { IAfterGuiAttachedParams, ICellEditorParams } from "ag-grid/main";
 import { AgEditorComponent, } from "ag-grid-angular";
-import { MdInput } from "@angular/material";
+import { MatInput } from "@angular/material";
 
 @Component({
   selector: 'app-ag-grid-material-text-editor',
-  templateUrl: './ag-grid-material-text-editor.component.html',
-  styleUrls: ['./ag-grid-material-text-editor.component.scss']
+  styleUrls: ['./ag-grid-material-text-editor.component.scss'],
+  template:`
+  <mat-form-field class="mat-input-container">
+    <input #input matInput [(ngModel)]="value" >
+  </mat-form-field>
+`
 })
 export class AgGridMaterialTextEditorComponent implements OnInit, AgEditorComponent {
+    columnWidth: string;
     params: ICellEditorParams;
     private value: string;
-    @ViewChild('input', {read: MdInput}) input;
+    @ViewChild('input', {read: MatInput}) input: MatInput;
 
     constructor() { }
 
@@ -33,15 +38,8 @@ export class AgGridMaterialTextEditorComponent implements OnInit, AgEditorCompon
         return false;
     }
 
-    focusIn(): void {
-        //
-    }
-
-    focusOut(): void {
-        // 
-    }
-
     agInit(params: ICellEditorParams): void {
+        //this.columnWidth = "150px";
         this.params = params;
         this.value = params.value;
     }

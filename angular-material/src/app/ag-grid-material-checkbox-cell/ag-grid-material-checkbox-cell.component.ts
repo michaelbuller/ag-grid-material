@@ -4,7 +4,7 @@ import { ICellRendererParams } from "ag-grid/main";
 
 @Component({
   selector: 'app-ag-grid-material-checkbox-cell',
-  template: `<md-checkbox (change)="toggleSelection($event)"></md-checkbox>`
+  template: `<mat-checkbox (change)="toggleSelection($event)"></mat-checkbox>`
 })
 export class AgGridMaterialCheckboxCellComponent implements OnInit, AgRendererComponent {
     private params: ICellRendererParams;
